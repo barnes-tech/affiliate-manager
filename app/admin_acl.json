@@ -1,0 +1,9 @@
+{
+  "View Site" : "home",
+  "Products" : "adminproducts/index",
+  "Register" : {
+    "Register" : "register/register",
+    "Login" : "register/login",
+    "Logout" : "register/logout"
+  }
+}
