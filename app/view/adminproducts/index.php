@@ -28,12 +28,15 @@
           </th>
         </thead>
         <tbody>
-          <?php foreach($this->products as $product):?>
+          <?php foreach($this->products as $product):
+            $style = ($product->reviewed==0)? 'btn-danger':'btn-success';
+            ?>
             <tr data-id="<?=$product->id?>">
               <td><?=$product->name?></td>
               <td><?=$product->tagline?></td>
               <td><?=$product->updated_at?></td>
               <td class="tbl-ctrl">
+                <a class="btn <?=$style?> btn-sm" href="<?=SROOT?>adminreviews/edit/<?=$product->id?>"><i class="fas fa-feather-alt"></i></a>
                 <a class="btn btn-dark btn-sm" href="#" onclick="toggleListed(<?=$product->id?>);return false;">
                   <i data-id="<?=$product->id?>" class="<?=($product->listed)? 'fas fa-star':'far fa-star'?>"></i>
                 </a>

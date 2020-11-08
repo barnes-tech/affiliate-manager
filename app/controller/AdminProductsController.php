@@ -18,6 +18,7 @@
     public function add_action() {
       $product = new Products();
       $images = new ProductImages();
+      $review = new Reviews();
       $brands = Brands::get_brands_options();
       if($this->request->is_post()) {
         $this->request->csrf_check();
@@ -34,7 +35,7 @@
               $msg.= $message." ";
             }
             $msg = trim($msg);
-            $product->add_error_msg('rpdocut_images',$msg);
+            $product->add_error_msg('product_images',$msg);
           }
         }
         $product->assign($this->request->get(),Products::blacklist);
@@ -42,6 +43,8 @@
         $product->save();
         if($product->is_valid()) {
           $images->upload_product_images($product->id,$uploads);
+          $review->product_id = $product->id;
+          $review->save();
           Session::add_msg('success','Product "'.$product->name.'" added successfully.');
           Router::redirect('adminproducts/index');
         }

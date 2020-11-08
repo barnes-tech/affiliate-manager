@@ -1,6 +1,5 @@
 <?php
-
-namespace Core\validators;
+namespace Core\Validators;
 use Core\validators\CustomValidator;
 
 class HttpsValidator extends CustomValidator {

@@ -93,6 +93,7 @@ class Model {
         $save = $this->update($fields);
       }
     }
+    $this->after_save();
     return $save;
   }
 

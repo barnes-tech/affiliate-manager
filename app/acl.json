@@ -26,6 +26,6 @@
     "Admindashboard" : ["*"],
     "Adminproducts" : ["*"],
     "Adminbrands" : ["*"],
-    "Adminprojects" : ["*"]
+    "Adminreviews" : ["*"]
   }
 }
