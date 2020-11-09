@@ -55,4 +55,27 @@
       $this->view->form_action = SROOT.'adminproducts/add';
       $this->view->render('adminproducts/add');
     }
+
+    public function delete_action() {
+      $resp = [
+        'success' => false,
+        'msg' => 'Something went wrong.'
+      ];
+      if($this->request->is_post()) {
+        $id = $this->request->get('id');
+        $product = Products::find_by_user_and_id($this->current_user->id,$id);
+        $review = Reviews::find_product_id($id);
+        if($product && $review) {
+          ProductImages::delete_images((int)$id,false);
+          $product->delete();
+          $review->delete();
+          $resp = [
+            'success' => true,
+            'msg' => $product->name.' deleted.',
+            'model_id' => $id
+          ];
+        }
+      }
+      $this->json_response($resp);
+    }
   }

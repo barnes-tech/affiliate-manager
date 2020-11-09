@@ -53,7 +53,7 @@
 </section>
 <script>
   function deleteProduct(id){
-    if(window.confirm("Are you sure you want to delete this product. It cannot be reversed.")){
+    if(window.confirm("Deleting this product will remove all affiliate content including reviews and images. Are you sure you want to continue?")){
       jQuery.ajax({
         url : '<?=SROOT?>adminproducts/delete',
         method : "POST",

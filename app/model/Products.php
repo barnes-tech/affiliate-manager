@@ -28,12 +28,20 @@
     $this->time_stamps();
   }
 
-    public static function find_by_user_id($user_id, $params=[]) {
-      $conditions = [
-        'conditions' => "user_id = ?",
-        'bind' => [(int)$user_id]
-      ];
-      $params = array_merge($conditions,$params);
-      return self::find($params);
-    }
+  public static function find_by_user_id($user_id, $params=[]) {
+    $conditions = [
+      'conditions' => "user_id = ?",
+      'bind' => [(int)$user_id]
+    ];
+    $params = array_merge($conditions,$params);
+    return self::find($params);
   }
+
+  public static function find_by_user_and_id($user_id,$id) {
+    $conditions = [
+      'conditions' => "user_id = ? AND id = ?",
+      'bind' => [(int)$user_id,(int)$id]
+    ];
+    return self::find_first($conditions);
+  }
+}

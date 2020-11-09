@@ -12,6 +12,13 @@
 
     public function edit_action($id) {
       $review = Reviews::find_product_id($id);
-      Tools::dnd($review);
+      $images = ReviewImages::find_review_id($id);
+      if(!$images) {
+        $images = new ReviewImages();
+      }
+      $this->view->review = $review;
+      $this->view->images = $images;
+      $this->view->display_errors = $review->get_validation_errors();
+      $this->view->render('adminreviews/edit');
     }
   }
