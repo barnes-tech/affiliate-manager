@@ -56,6 +56,52 @@
       $this->view->render('adminproducts/add');
     }
 
+    public function edit_action($id) {
+      $product = Products::find_by_user_and_id($this->current_user->id,$id);
+      if(!$product) {
+        Session::add_msg('danger','You don\'t have permission to edit that product');
+        Router::redirect('adminproducts/index');
+      }
+      $images = ProductImages::find_by_product_id($id);
+      $brands = Brands::get_brands_options();
+      if($this->request->is_post()) {
+        $this->request->csrf_check();
+        $files = $_FILES['product_images'];
+        $is_files = ($files['tmp_name'][0]!='');
+        if($is_files) {
+          $uploads = new Uploads($files);
+          $uploads->run_validation();
+          $image_errors = $uploads->is_valid();
+          if(is_array($image_errors)) {
+            $msg = "";
+            foreach($image_errors as $error => $message) {
+              $msg.= $message." ";
+            }
+            $msg = trim($msg);
+            $product->add_error_msg('product_images',$msg);
+          }
+        }
+        $product->assign($this->request->get(),Products::blacklist);
+        $product->user_id = $this->current_user->id;
+        $product->save();
+        if($product->is_valid()) {
+          if($is_files) {
+            ProductImages::upload_product_images($product->id,$uploads);
+          }
+          $sort_order = json_decode($_POST['sorted-img']);
+          ProductImages::update_sort_by_id($product->id,$sort_order);
+          Session::add_msg('success',$product->name.' updated successfully.');
+          Router::redirect('adminproducts/index');
+        }
+      }
+      $this->view->product = $product;
+      $this->view->images = $images;
+      $this->view->brands = $brands;
+      $this->view->display_errors = $product->get_validation_errors();
+      $this->view->form_action = SROOT.'adminproducts/edit';
+      $this->view->render('adminproducts/edit');
+    }
+
     public function delete_action() {
       $resp = [
         'success' => false,

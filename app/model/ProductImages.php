@@ -12,7 +12,7 @@ class ProductImages extends Model {
   public static function upload_product_images($product_id,$uploads) {
     $last_img = self::find_first([
       'conditions' => "id = ?",
-      'bind' => [$product_id],
+      'bind' => [(int)$product_id],
       'order' => 'sort DESC'
     ]);
     $last_sort = (!$last_img)? 0 : $last_img->sort;
@@ -38,7 +38,7 @@ class ProductImages extends Model {
    public static function delete_images($product_id, $unlink = false) {
     $images = self::find([
       'conditions' => "product_id = ?",
-      'bind' => [$product_id]
+      'bind' => [(int)$product_id]
     ]);
     foreach($images as $image) {
       $image->delete();
@@ -55,7 +55,7 @@ class ProductImages extends Model {
     $sort = $image->sort;
     $after_imgs = self::find([
       'conditions' => "product_id = ? AND sort > ?",
-      'bind' => [$image->product_id, $sort]
+      'bind' => [(int)$image->product_id, (int)$sort]
     ]);
     foreach($after_imgs as $record) {
       $record->sort = $record->sort -1;
@@ -68,7 +68,7 @@ class ProductImages extends Model {
   public static function find_by_product_id($product_id) {
     return self::find([
       'conditions' => "product_id = ?",
-      'bind' => [$product_id],
+      'bind' => [(int)$product_id],
       'order' => 'sort'
     ]);
   }
