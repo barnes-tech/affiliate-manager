@@ -1,5 +1,8 @@
 # affiliate-manager
 Affiliate marketing CMS
+12/11/20: Edit review added and review images. 
+          Reviewed column added to products table.
+          Fixed bugs with image sort and img delete for product images.
 10/11/20: Edit products and images now added. 
 09/11/20: Adding product now adds an incomplete review associated
           Delete product functionality added, archive deletes associated review and images.
