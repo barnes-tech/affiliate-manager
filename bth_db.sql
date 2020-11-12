@@ -53,6 +53,7 @@ CREATE TABLE `products` (
   `updated_at` datetime DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `listed` tinyint(4) DEFAULT '0',
+  `reviewed` tinyint(4) DEFAULT '0',
   `archived` tinyint(4) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

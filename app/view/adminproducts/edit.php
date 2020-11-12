@@ -8,7 +8,7 @@
   <section class="row">
     <article class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
       <h2 class="text-center">Edit <?=$this->product->name?></h2>
-      <form action="<?=$this->form_action?>" method="POST" enctype="multiipart/form-data">
+      <form action="" method="POST" enctype="multipart/form-data">
         <?=FormHelpers::csrf_input()?>
         <section class="row">
           <?=FormHelpers::display_errors($this->display_errors)?>

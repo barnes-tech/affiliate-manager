@@ -42,6 +42,7 @@
       'conditions' => "user_id = ? AND id = ?",
       'bind' => [(int)$user_id,(int)$id]
     ];
+
     return self::find_first($conditions);
   }
 }

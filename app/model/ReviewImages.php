@@ -10,21 +10,21 @@
 
     public static function upload_review_images($review_id,$uploads) {
       $last_img = self::find_first([
-        'conditions' => "id = ?",
+        'conditions' => "review_id = ?",
         'bind' => [$review_id],
         'order' => 'sort DESC'
       ]);
       $last_sort = (!$last_img)? 0 : $last_img->sort;
-      $path = 'uploads'.DS.'product_images'.DS.'product_'.$product_id.DS;
+      $path = 'uploads'.DS.'review_images'.DS.'review_'.$review_id.DS;
       foreach($uploads->get_files() as $file) {
         $parts = explode('.',$file['name']);
         $ext = end($parts);
-        $hash = sha1(time().$product_id.$file['tmp_name']);
+        $hash = sha1(time().$review_id.$file['tmp_name']);
         $upload_name = $hash.'.'.$ext;
         $image = new self();
-        $image->url = 'uploads/product_images/product_'.$product_id.'/'.$upload_name;
+        $image->url = 'uploads/review_images/review_'.$review_id.'/'.$upload_name;
         $image->name = $upload_name;
-        $image->product_id = $product_id;
+        $image->review_id = $review_id;
         $image->sort = $last_sort;
         if($image->save()) {
           $uploads->upload($path,$upload_name,$file['tmp_name']);
@@ -34,7 +34,7 @@
     }
 
 
-     public static function delete_images($product_id, $unlink = false) {
+     public static function delete_images($review_id, $unlink = false) {
       $images = self::find([
         'conditions' => "product_id = ?",
         'bind' => [$product_id]
@@ -42,7 +42,7 @@
       foreach($images as $image) {
         $image->delete();
         if($unlink) {
-          $dir = 'uploads'.DS.'product_images'.DS.'product_'.$product_id;
+          $dir = 'uploads'.DS.'review_images'.DS.'review_'.$review_id;
           array_map('unlink', glob("$dir/*.*"));
           rmdir($dir);
         }

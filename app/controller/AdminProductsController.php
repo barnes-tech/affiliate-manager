@@ -56,6 +56,29 @@
       $this->view->render('adminproducts/add');
     }
 
+    public function listed_action() {
+      $resp = [
+        'success' => false,
+        'msg' => 'Something went wrong.'
+      ];
+      if($this->request->is_post()) {
+        $id = $this->request->get('id');
+        $product = Products::find_by_user_and_id($this->current_user->id,$id);
+        if($product) {
+          $product->listed = ($product->listed==1)? 0:1;
+          $product->save();
+          $msg = ($product->listed ==1)? $product->name." now featured on site.":$product->name." no longer featured.";
+          $resp = [
+            'success' => true,
+            'msg' => $msg,
+            'model_id' => $id,
+            'listed' => $product->listed
+          ];
+        }
+      }
+      $this->json_response($resp);
+    }
+
     public function edit_action($id) {
       $product = Products::find_by_user_and_id($this->current_user->id,$id);
       if(!$product) {
@@ -98,7 +121,6 @@
       $this->view->images = $images;
       $this->view->brands = $brands;
       $this->view->display_errors = $product->get_validation_errors();
-      $this->view->form_action = SROOT.'adminproducts/edit';
       $this->view->render('adminproducts/edit');
     }
 
@@ -124,4 +146,25 @@
       }
       $this->json_response($resp);
     }
+
+    public function delete_img_action() {
+      $resp = [
+        'success' => false,
+        'msg' => 'Something went wrong.'
+      ];
+      if($this->request->is_post()) {
+        $id = $this->request->get('image_id');
+        $image = ProductImages::find_id($id);
+        $product = Products::find_by_user_and_id($this->current_user->id,$image->product_id);
+        if($product) {
+          ProductImages::delete_id($id);
+          $resp = [
+            'success' => true,
+            'model_id' => $image->id
+          ];
+        }
+      }
+      $this->json_response($resp);
+    }
+
   }
