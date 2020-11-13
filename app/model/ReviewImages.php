@@ -36,8 +36,8 @@
 
      public static function delete_images($review_id, $unlink = false) {
       $images = self::find([
-        'conditions' => "product_id = ?",
-        'bind' => [$product_id]
+        'conditions' => "review_id = ?",
+        'bind' => [$review_id]
       ]);
       foreach($images as $image) {
         $image->delete();
@@ -53,14 +53,14 @@
       $image = self::find_id($image_id);
       $sort = $image->sort;
       $after_imgs = self::find([
-        'conditions' => "product_id = ? AND sort > ?",
-        'bind' => [$image->product_id, $sort]
+        'conditions' => "review_id = ? AND sort > ?",
+        'bind' => [$image->review_id, $sort]
       ]);
       foreach($after_imgs as $record) {
         $record->sort = $record->sort -1;
         $record->save();
       }
-      unlink(ROOT.DS.'uploads'.DS.'product_images'.DS.'product_'.$image->product_id.DS.$image->name);
+      unlink(ROOT.DS.'uploads'.DS.'review_images'.DS.'review_'.$image->review_id.DS.$image->name);
       return $image->delete();
     }
 
@@ -72,8 +72,8 @@
       ]);
     }
 
-    public static function update_sort_by_id($product_id,$sort_order=[]) {
-      $images = self::find_by_product_id($product_id);
+    public static function update_sort_by_id($review_id,$sort_order=[]) {
+      $images = self::find_by_product_id($review_id);
       $i = 0;
       foreach($images as $image) {
         $val = 'img_'.$image->id;

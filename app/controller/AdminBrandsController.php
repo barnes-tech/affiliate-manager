@@ -22,32 +22,8 @@
       $this->view->render('adminbrands/index');
     }
 
-    public function save_action() {
-      if($this->request->is_post()) {
-        $resp = ['success' => false];
-        $id = $this->request->get('brand_id');
-        if($id=='new') {
-          $brand = new Brands();
-          $brand->user_id = $this->current_user->id;
-        } else {
-          $brand = Brands::find_by_user_and_id($this->current_user->id,$id);
-        }
-        $brand->name = $this->request->get('name');
-        $brand->about = $this->request->get('about');
-        $brand->save();
-        if($brand->is_valid()) {
-          $resp = [
-            'success' => true,
-            'brand' => $brand->data()
-          ];
-        } else {
-          $resp = [
-            'success' => false,
-            'errors' => $brand->get_validation_errors()
-          ];
-        }
-        $this->json_response($resp);
-      }
+    public function add_action() {
+      
     }
 
     public function get_brand_action() {

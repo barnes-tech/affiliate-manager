@@ -11,7 +11,7 @@
           <input type="hidden" id="sorted-img" name="sorted-img" value="" />
           <?=FormHelpers::input_block('text','Title for Review','title',$this->review->title,['class'=>'form-control'],['class'=>'col-lg-4 offset-lg-2 p-2'])?>
           <?=FormHelpers::image_upload('Review Images','review_images',['class'=>'form-control'],['class'=>'col-lg-4 offset-lg-2-2 p-2'])?>
-          <?php if(count($this->images)>0):?>
+          <?php if(count($this->images)!=0):?>
             <?=$this->partial('adminreviews','edit_images')?>
           <?php endif;?>
           <?=FormHelpers::input_block('text','Overview section title','overview_head', $this->review->overview_head,['class'=>'form-control'],['class'=>'col-lg-2 offset-lg-2 p-2'])?>

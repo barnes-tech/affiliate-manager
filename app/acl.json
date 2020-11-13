@@ -22,7 +22,6 @@
     "denied" : {
       "Register" : ["login"]
     },
-    "Store" : ["*"],
     "Admindashboard" : ["*"],
     "Adminproducts" : ["*"],
     "Adminbrands" : ["*"],

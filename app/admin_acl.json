@@ -1,5 +1,6 @@
 {
   "View Site" : "home",
+  "Brands" : "adminbrands/index",
   "Products" : "adminproducts/index",
   "Register" : {
     "Register" : "register/register",

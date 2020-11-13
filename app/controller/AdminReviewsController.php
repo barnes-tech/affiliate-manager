@@ -54,4 +54,25 @@
       $this->view->form_action = SROOT.'adminreviews/edit';
       $this->view->render('adminreviews/edit');
     }
+
+    public function delete_img_action() {
+      $resp = [
+        'success' => false,
+        'msg' => 'Something went Wrong.'
+      ];
+      if($this->request->is_post()) {
+        $id = $this->request->get('image_id');
+        $image = ReviewImages::find_id($id);
+        $review = Reviews::find_id($image->review_id);
+        $product = Products::find_by_user_and_id($this->current_user->id, $review->product_id);
+        if($product) {
+          ReviewImages::delete_id($id);
+          $resp = [
+            'success' => true,
+            'model_id' => $image->id
+          ];
+        }
+      }
+      $this->json_response($resp);
+    }
 }
