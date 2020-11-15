@@ -1,7 +1,7 @@
 <?php
   namespace App\Controller;
   use Core\{Controller,Tools,Session,Router};
-  use App\Model\{Products,ProductImages,Users,Reviews,Brands};
+  use App\Model\{Keywords,Products,ProductImages,Users,Reviews,Brands};
   use App\Lib\Utilities\Uploads;
 
   class AdminProductsController extends Controller {
@@ -19,6 +19,7 @@
       $product = new Products();
       $images = new ProductImages();
       $review = new Reviews();
+      $keywords = new Keywords();
       $brands = Brands::get_brands_options();
       if($this->request->is_post()) {
         $this->request->csrf_check();

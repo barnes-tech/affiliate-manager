@@ -10,7 +10,7 @@
         <p>There are currently no brands in the database</p>
       </section>
       <section class="card-footer">
-        <a href="add" class="btn btn-success mr-0">Get Started <i class="fa fa-plus"></i></a>
+        <button class="btn btn-success btn-md" data-toggle="modal" data-target="#addBrandModal">Get started <i class="fas fa-plus"></i></button>
       </section>
     </article>
   </section>
@@ -24,7 +24,7 @@
           <th>About</th>
           <th>Updated</th>
           <th class="tbl-ctrl-prod">
-            <a class="btn btn-success btn-sm" href="add">Brand <i class="fas fa-plus"></i></a>
+            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addBrandModal">Add Brand <i class="fas fa-plus"></i></button>
           </th>
         </thead>
         <tbody>
@@ -45,7 +45,28 @@
       </table>
     </article>
 </section>
+<?php $this->partial('adminbrands','modal');?>
 <script>
+  function editBrand(id) {
+    jQuery.ajax({
+      url : '<?=SROOT?>adminbrands/get_brand',
+      method : "POST",
+      data : { id : id},
+      success : function(resp) {
+        if(resp.success) {
+          jQuery('#brand_id').val(resp.brand.id);
+          jQuery('#name').val(resp.brand.name);
+          jQuery('#about').val(resp.brand.about);
+          jQuery('#addBrandModal').modal('show');
+        } else {
+          jQuery('#brand_id').val('new');
+          jQuery('#name').val('');
+          jQuery('#about').val('');
+        }
+      }
+    });
+  }
+
   function deleteBrand(id){
     if(window.confirm("Deleting this product will remove all affiliate content including reviews and images. Are you sure you want to continue?")){
       jQuery.ajax({

@@ -1,10 +1,10 @@
 <?php
   namespace App\Model;
   use Core\{Model,Tools};
-  use Core\Validators\{RequiredValidator,UniqueValidator};
+  use Core\Validators\{RequiredValidator,UniqueValidator,HttpsValidator};
 
   class Brands extends Model {
-    public $id, $name, $about, $created_at, $updated_at, $user_id, $archived = 0;
+    public $id, $name, $about, $logo, $created_at, $updated_at, $user_id, $archived = 0;
     protected static $_table = 'brands',$_archived = true;
 
     public function before_save() {

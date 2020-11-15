@@ -1,6 +1,6 @@
 <?php
   $this->start('body');
-  if(!$this->products) :?>
+  if(!$this->products):?>
   <section class="row">
     <article class="card col-lg-4 offset-lg-4 p-0 mx-auto mt-1 text-center">
       <header class="card-header">
@@ -14,6 +14,7 @@
       </section>
     </article>
   </section>
+
 <?php else:?>
 <section class="row">
   <article class="col-lg-10 offset-lg-1 p-5">
@@ -51,6 +52,7 @@
       </table>
     </article>
 </section>
+
 <script>
   function deleteProduct(id){
     if(window.confirm("Deleting this product will remove all affiliate content including reviews and images. Are you sure you want to continue?")){

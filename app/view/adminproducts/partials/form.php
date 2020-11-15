@@ -2,8 +2,8 @@
   use Core\FormHelpers;?>
   <form action="<?=$this->form_action?>" method="POST" enctype="multipart/form-data">
     <?=FormHelpers::csrf_input()?>
+    <?=FormHelpers::display_errors($this->display_errors)?>
     <section class="row">
-      <?=FormHelpers::display_errors($this->display_errors)?>
       <?=FormHelpers::input_block('text','Product','name',$this->product->name,['class'=>'form-control'],['class'=>'col-sm-4 col-md-4 col-lg-4 offset-lg-2']);?>
       <?=FormHelpers::input_block('text','Tagline','tagline',$this->product->tagline,['class'=>'form-control'],['class'=>'col-sm-8 col-md-4 col-lg-4 offset-lg-2-2'])?>
       <?=FormHelpers::select_block('Brand', 'brand', $this->product->brand, $this->brands,['class'=>'form-control '],['class'=>'col-sm-4 col-md-4 col-lg-4 offset-lg-2']);?>
