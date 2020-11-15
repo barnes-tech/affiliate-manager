@@ -1,5 +1,6 @@
 # affiliate-manager
 Affiliate marketing CMS
+15/11/20: Brand Modal added, brand table modified.
 13/11/20: Started work on brands.
 12/11/20: Edit review added and review images. 
           Reviewed column added to products table.
