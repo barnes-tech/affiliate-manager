@@ -1,6 +1,6 @@
 <?php use Core\FormHelpers;?>
 <div class="modal fade" id="addBrandModal" tabindex="-1" role="dialog" aria-labelledby="addBrandModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
+<div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" id="addBrandModalLabel">New Brand</h5>
@@ -10,10 +10,10 @@
     </div>
     <div class="modal-body">
 
-        <form method="post" action="" class="row" id="modalForm">
+        <form method="post" action="<?=SROOT?>adminbrands/save" class="row" id="modalForm" enctype="multipart/form-data">
           <input type="hidden" id="brand_id" name="brand_id" value="new" />
-          <?=FormHelpers::input_block('text','Brand name','name',$this->brand->name,['class'=>'form-control'],['class'=>'form-group col-sm-4']);?>
-          <?=FormHelpers::input_block('text','About','about',$this->brand->about,['class'=>'form-control'],['class'=>'form-group col-sm-8']);?>
+          <?=FormHelpers::input_block('text','Brand','name',$this->brand->name,['class'=>'form-control'],['class'=>'form-group col-sm-4']);?>
+          <?=FormHelpers::input_block('text','About','about',$this->brand->about,['class'=>'form-control'],['class'=>'form-group col-sm-4']);?>
         </form>
 
     </div>

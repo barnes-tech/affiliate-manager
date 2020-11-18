@@ -11,7 +11,7 @@
     public static function upload_review_images($review_id,$uploads) {
       $last_img = self::find_first([
         'conditions' => "review_id = ?",
-        'bind' => [$review_id],
+        'bind' => [(int)$review_id],
         'order' => 'sort DESC'
       ]);
       $last_sort = (!$last_img)? 0 : $last_img->sort;

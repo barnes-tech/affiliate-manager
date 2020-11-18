@@ -11,7 +11,7 @@ class ProductImages extends Model {
 
   public static function upload_product_images($product_id,$uploads) {
     $last_img = self::find_first([
-      'conditions' => "id = ?",
+      'conditions' => "product_id = ?",
       'bind' => [(int)$product_id],
       'order' => 'sort DESC'
     ]);

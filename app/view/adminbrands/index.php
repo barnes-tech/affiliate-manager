@@ -10,7 +10,7 @@
         <p>There are currently no brands in the database</p>
       </section>
       <section class="card-footer">
-        <button class="btn btn-success btn-md" data-toggle="modal" data-target="#addBrandModal">Get started <i class="fas fa-plus"></i></button>
+        <a class="btn btn-success btn-md" href="add">Get started <i class="fas fa-plus"></i></a>
       </section>
     </article>
   </section>
@@ -24,7 +24,7 @@
           <th>About</th>
           <th>Updated</th>
           <th class="tbl-ctrl-prod">
-            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addBrandModal">Add Brand <i class="fas fa-plus"></i></button>
+            <a class="btn btn-success btn-sm" href="add">Brand <i class="fas fa-plus"></i></a>
           </th>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@
               <td><?=$brand->about?></td>
               <td><?=$brand->updated_at?></td>
               <td class="tbl-ctrl">
-                <a class="btn btn-dark btn-sm" href="edit/<?=$brand->id?>"><i class="fas fa-pen-square"></i></a>
+                <a class="btn btn-dark btn-sm" href="#" onclick="editBrand(<?=$brand->id?>);return false;"><i class="fas fa-pen-square"></i></a>
                 <a class="btn btn-dark btn-sm" href="#" onclick="deleteProduct(<?=$brand->id?>);return false;"><i class="fas fa-trash-alt"></i></a>
               </td>
             </tr>
@@ -45,7 +45,6 @@
       </table>
     </article>
 </section>
-<?php $this->partial('adminbrands','modal');?>
 <script>
   function editBrand(id) {
     jQuery.ajax({
