@@ -3,9 +3,9 @@
   $this->set_sitle('New Brand');
   $this->start('body');?>
   <section class="row">
-    <article class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-      <h2 class="text-center">New Product</h2>
-      <form action="<?=$this->form_action?>" method="POST" enctype="multipart/form-data">
+    <article class="card col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <h2 class="card-head text-center">New Product</h2>
+      <form class="card-body" action="<?=$this->form_action?>" method="POST" enctype="multipart/form-data">
         <?=FormHelpers::csrf_input()?>
         <?=FormHelpers::display_errors($this->display_errors)?>
         <section class="row">

@@ -45,7 +45,7 @@
         $brand->user_id = $this->current_user->id;
         $brand->save();
         if($brand->is_valid()) {
-          $logo->upload_logo($brand->id,$uploads,$brand->name);
+          $logo->upload_brand_images($brand->id,$uploads);
           Session::add_msg('success',$brand->name.' added to brands.');
           Router::redirect('adminbrands/index');
         }
@@ -82,6 +82,7 @@
         ];
         if($brand) {
           $brand->delete();
+          Logos::delete_images($brand->id);
           $resp = [
             'success' => true,
             'model_id' => $id,

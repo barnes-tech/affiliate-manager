@@ -34,8 +34,9 @@
               <td><?=$brand->about?></td>
               <td><?=$brand->updated_at?></td>
               <td class="tbl-ctrl">
-                <a class="btn btn-dark btn-sm" href="#" onclick="editBrand(<?=$brand->id?>);return false;"><i class="fas fa-pen-square"></i></a>
-                <a class="btn btn-dark btn-sm" href="#" onclick="deleteProduct(<?=$brand->id?>);return false;"><i class="fas fa-trash-alt"></i></a>
+                <a class="btn btn-dark btn-sm" href="#" onclick="brandDetails(<?=$brand->id?>);return false;"><i class="fas fa-pen-square"></i></a>
+                <a class="btn btn-dark btn-sm" href="edit/<?=$brand->id?>"><i class="fas fa-pen-square"></i></a>
+                <a class="btn btn-dark btn-sm" href="#" onclick="deleteBrand(<?=$brand->id?>);return false;"><i class="fas fa-trash-alt"></i></a>
               </td>
             </tr>
           <?php
@@ -46,7 +47,7 @@
     </article>
 </section>
 <script>
-  function editBrand(id) {
+  function brandDetails(id) {
     jQuery.ajax({
       url : '<?=SROOT?>adminbrands/get_brand',
       method : "POST",
@@ -69,13 +70,12 @@
   function deleteBrand(id){
     if(window.confirm("Deleting this product will remove all affiliate content including reviews and images. Are you sure you want to continue?")){
       jQuery.ajax({
-        url : '<?=SROOT?>adminproducts/delete',
+        url : '<?=SROOT?>adminbrands/delete',
         method : "POST",
         data : {id : id},
         success: function(resp){
           var msgType = (resp.success)? 'dark' : 'danger';
           if(resp.success){
-
             jQuery('tr[data-id="'+resp.model_id+'"]').remove();
           }
           alertMsg(resp.msg, msgType);

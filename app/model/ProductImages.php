@@ -1,12 +1,10 @@
 <?php
+  namespace App\Model;
+  use Core\{Model,Tools};
 
-namespace App\Model;
-use Core\{Model,Tools};
-
-
-class ProductImages extends Model {
-  protected static $_table = 'product_images',$_archived = true;
-  public $id, $name, $url, $sort, $product_id, $archived = 0;
+  class ProductImages extends Model {
+    protected static $_table = 'product_images',$_archived = true;
+    public $id, $name, $url, $sort, $product_id, $archived = 0;
 
 
   public static function upload_product_images($product_id,$uploads) {
