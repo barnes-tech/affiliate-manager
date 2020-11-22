@@ -56,6 +56,19 @@
       $this->view->render('adminbrands/add');
     }
 
+    public function edit_action($id) {
+      $brand = Brands::find_by_user_and_id($this->current_user->id,$id);
+      if(!$brand) {
+        Session::add_msg('danger','You don\'t have permission to edit that brand.');
+        Router::redirect('adminbrands/index');
+      }
+      $images = Logos::find_by_brand_id($id);
+      $this->view->brand = $brand;
+      $this->view->images = $images;
+      $this->view->display_errors = $brand->get_validation_errors();
+      $this->view->render('adminbrands/edit');
+    }
+
     public function get_brand_action() {
       if($this->request->is_post()) {
         $id = (int)$this->request->get('id');

@@ -21,7 +21,7 @@
     public static function find_by_user_and_id($user_id,$id) {
       return self::find_first([
         'conditions' => "user_id = ? AND id = ?",
-        'bind' => [$user_id,$id]
+        'bind' => [(int)$user_id,(int)$id]
       ]);
     }
 
@@ -35,6 +35,20 @@
       }
       return $brands_arr;
     }
+
+    public function find_by_user_with_image($user_id) {
+      $sql = "SELECT brands.*, lo.url as url, lo.sort as sort
+              FROM brands
+              JOIN logos lo
+              ON brands.id = lo.brand_id
+              WHERE brands.user_id = '$user_id' AND brands.archived = '0' AND lo.sort = '0'
+              ";
+      $brands = $this->query($sql);
+      return $products->result();
+    }
+
+
+
 
 
   }

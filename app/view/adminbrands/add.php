@@ -4,7 +4,8 @@
   $this->start('body');?>
   <section class="row">
     <article class="card col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-      <h2 class="card-head text-center">New Product</h2>
+      <h2 class="card-head text-center">New Brand</h2>
+      <p class="info col-lg-8 offset-lg-2">It's good to keep some information on the brands of the products you review.</p>
       <form class="card-body" action="<?=$this->form_action?>" method="POST" enctype="multipart/form-data">
         <?=FormHelpers::csrf_input()?>
         <?=FormHelpers::display_errors($this->display_errors)?>
