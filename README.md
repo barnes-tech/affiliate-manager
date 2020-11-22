@@ -1,5 +1,6 @@
 # affiliate-manager
 Affiliate marketing CMS
+22/11/20: Work on brands
 18/11/20: Removed brand edit modal and replaced for form, brand image delete now working.
 15/11/20: Brand Modal added, brand table modified.
 13/11/20: Started work on brands.
