@@ -1,25 +1,3 @@
-<style>
-  .edit-image-wrap {
-    border-radius: 4px;
-    box-shadow:2px 2px 6px rgba(0,0,0,0.25);
-  }
-  .edit-image-wrap img {
-    height:75px;
-  }
-  .sortable-placeholder {
-    background-color:red;
-  }
-  .img-delete {
-    padding-left:4px;
-    position:absolute;
-    color:crimson;
-    cursor:pointer;
-  }
-  .img-delete:hover {
-    color:darkred;
-  }
-
-</style>
 <section class="cols-sm-12 col-md-12 col-lg-8 offset-lg-2">
   <label for="sortable-img">Sort Images</label>
   <article id="sortable-img" class="d-flex">

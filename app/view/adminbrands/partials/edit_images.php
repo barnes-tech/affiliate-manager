@@ -5,7 +5,7 @@
 
     <div class="edit-image-wrap m-1" id="img_<?=$image->id?>" data-id="<?=$image->id?>">
       <span class="img-delete" onclick="deleteImage(<?=$image->id?>);return false;"><i class="fas fa-times"></i></span>
-      <img src="<?=SROOT.$image->url?>" class="img-fluid"/>
+      <img src="<?=SROOT.$image->url?>" height="150px" width="auto"/>
     </div>
   <?php endforeach;?>
   </article>

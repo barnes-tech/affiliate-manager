@@ -88,6 +88,28 @@ ul li {
   margin:1px;
 }
 
+/* edit images style */
+
+.edit-image-wrap {
+  border-radius: 4px;
+  box-shadow:2px 2px 6px rgba(0,0,0,0.25);
+}
+.edit-image-wrap img {
+  height:75px;
+}
+.sortable-placeholder {
+  background-color:red;
+}
+.img-delete {
+  padding-left:4px;
+  position:absolute;
+  color:crimson;
+  cursor:pointer;
+}
+.img-delete:hover {
+  color:darkred;
+}
+
 
 
 /* form error styles */
