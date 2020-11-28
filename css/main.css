@@ -130,23 +130,50 @@ ul li {
   color:crimson;
 }
 
+.object-card {
+  border:solid 2px transparent;
+  border-radius:3px;
+  height: 200px;
+}
+
+.object-card a {
+  color:#000000;
+}
+
+.object-card a:hover {
+  
+  text-decoration:none;
+}
+
 .frames {
   background-color:limegreen
 }
 
-@media (min-width: 768px) {
-    .rogue-card {
-        width: 33.33%;
+.object-card:hover {
+  background-color:#e7e7ff;
+  border-radius:3px;
+  border:solid 2px grey;
+}
 
+.object-card-btn {
+  border: solid 1px black;
+}
+
+@media (min-width: 768px) {
+    .object-card {
+        width: 33.33%;
+        padding:2px;
     }
 }
 @media (min-width: 992px) {
-    .rogue-card {
+    .object-card {
         width: 25%;
+        padding: 3px;
     }
 }
 @media (min-width: 1200px) {
-    .rogue-card {
+    .object-card {
         width: 20%;
+        padding:4px;
     }
 }

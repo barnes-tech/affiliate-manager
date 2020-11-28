@@ -97,16 +97,18 @@
     }
 
     public function get_brand_action() {
+      $brands = new Brands();
       if($this->request->is_post()) {
         $id = (int)$this->request->get('id');
-        $brand = Brands::find_by_user_and_id($this->current_user->id,$id);
+        $brand = $brands->find_by_brand_with_image($id);
+        //Tools::dnd($brand);
         $resp = [
           'success' => false
         ];
         if($brand) {
           $resp = [
             'success' => true,
-            'brand' => $brand->data()
+            'brand' => $brand
           ];
         }
         $this->json_response($resp);
@@ -127,7 +129,8 @@
           $resp = [
             'success' => true,
             'model_id' => $id,
-            'name' => $brand->name
+            'name' => $brand->name,
+            'msg' => $brand->name.' deleted'
           ];
         }
       }

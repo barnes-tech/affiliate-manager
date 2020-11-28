@@ -46,4 +46,15 @@
       $brands = $this->query($sql);
       return $brands->result();
     }
+
+    public function find_by_brand_with_image($brand_id) {
+      $sql = "SELECT brands.*, lo.url as url, lo.sort
+              FROM Brands
+              JOIN logos lo
+              ON brands.id  = lo.brand_id
+              WHERE brands.id = '$brand_id' AND brands.archived = '0' AND lo.sort = '0'
+              ";
+      $brand = $this->query($sql);
+      return $brand->result();
+    }
   }
