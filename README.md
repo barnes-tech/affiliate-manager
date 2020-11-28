@@ -1,5 +1,6 @@
 # affiliate-manager
 Affiliate marketing CMS
+28/11/20: Modal index frontend changes, now displays with image, details displayed in modal.
 25/11/10: Products model joined SQL query brands with image. 
 22/11/20: Work on brands
 18/11/20: Removed brand edit modal and replaced for form, brand image delete now working.
