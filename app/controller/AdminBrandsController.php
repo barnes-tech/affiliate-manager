@@ -101,14 +101,13 @@
       if($this->request->is_post()) {
         $id = (int)$this->request->get('id');
         $brand = $brands->find_by_brand_with_image($id);
-        //Tools::dnd($brand);
         $resp = [
           'success' => false
         ];
         if($brand) {
           $resp = [
             'success' => true,
-            'brand' => $brand
+            'brand'=> $brand
           ];
         }
         $this->json_response($resp);

@@ -37,7 +37,7 @@
     }
 
     public function find_by_user_with_image($user_id) {
-      $sql = "SELECT brands.*, lo.url as url, lo.sort
+      $sql = "SELECT brands.*, lo.img_url as img_url, lo.sort
               FROM brands
               JOIN logos lo
               ON brands.id = lo.brand_id
@@ -48,7 +48,7 @@
     }
 
     public function find_by_brand_with_image($brand_id) {
-      $sql = "SELECT brands.*, lo.url as url, lo.sort
+      $sql = "SELECT brands.*, lo.img_url as img_url, lo.sort
               FROM Brands
               JOIN logos lo
               ON brands.id  = lo.brand_id

@@ -4,7 +4,7 @@
 
   class Logos extends Model {
     protected static $_table = 'logos',$_archived = true;
-    public $id, $name, $url, $sort, $brand_id, $archived = 0;
+    public $id, $name, $img_url, $sort, $brand_id, $archived = 0;
 
 
   public static function upload_brand_images($brand_id, $uploads) {
@@ -21,7 +21,7 @@
       $hash = sha1(time().$brand_id.$file['tmp_name']);
       $upload_name = $hash.'.'.$ext;
       $image = new self();
-      $image->url = 'uploads/brand_logos/brand_'.$brand_id.'/'.$upload_name;
+      $image->img_url = 'uploads/brand_logos/brand_'.$brand_id.'/'.$upload_name;
       $image->name = $upload_name;
       $image->brand_id = $brand_id;
       $image->sort = $last_sort;

@@ -5,7 +5,7 @@
 
   class ReviewImages extends Model {
     protected static $_table = 'review_images',$_archived = true;
-    public $id, $name, $url, $sort, $review_id, $archived = 0;
+    public $id, $name, $img_url, $sort, $review_id, $archived = 0;
 
 
     public static function upload_review_images($review_id,$uploads) {
@@ -22,7 +22,7 @@
         $hash = sha1(time().$review_id.$file['tmp_name']);
         $upload_name = $hash.'.'.$ext;
         $image = new self();
-        $image->url = 'uploads/review_images/review_'.$review_id.'/'.$upload_name;
+        $image->img_url = 'uploads/review_images/review_'.$review_id.'/'.$upload_name;
         $image->name = $upload_name;
         $image->review_id = $review_id;
         $image->sort = $last_sort;

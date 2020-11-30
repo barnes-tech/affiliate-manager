@@ -4,7 +4,7 @@
 
   class ProductImages extends Model {
     protected static $_table = 'product_images',$_archived = true;
-    public $id, $name, $url, $sort, $product_id, $archived = 0;
+    public $id, $name, $img_url, $sort, $product_id, $archived = 0;
 
 
   public static function upload_product_images($product_id,$uploads) {
@@ -21,7 +21,7 @@
       $hash = sha1(time().$product_id.$file['tmp_name']);
       $upload_name = $hash.'.'.$ext;
       $image = new self();
-      $image->url = 'uploads/product_images/product_'.$product_id.'/'.$upload_name;
+      $image->img_url = 'uploads/product_images/product_'.$product_id.'/'.$upload_name;
       $image->name = $upload_name;
       $image->product_id = $product_id;
       $image->sort = $last_sort;
