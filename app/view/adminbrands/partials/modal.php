@@ -11,7 +11,7 @@
     <div class="modal-body">
       <section class="row">
         <div class="col-lg-4">
-          <img id="brand_image" src="" alt=""/>
+          <img id="brand_image" src="" alt="" class="img-fluid"/>
         </div>
         <div class="col-lg-8 text-center">
           <h3 id="name"></h3>

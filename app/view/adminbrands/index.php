@@ -22,7 +22,7 @@
       <?php foreach($this->brands as $brand):?>
         <article id="<?=$brand->id?>" class="object-card flex">
           <a href="#" onclick="brandDetails(<?=$brand->id?>)">
-          <img src="<?=SROOT.$brand->img_url?>" class="d-block mx-auto" height="150px" width="200px" alt="<?=$brand->name?>"/>
+          <img src="<?=$brand->img_url?>" class="d-block mx-auto" height="150px" width="200px" alt="<?=$brand->name?>"/>
           <h3 class="text-center"><?=$brand->name?></h3>
           </a>
         </article>

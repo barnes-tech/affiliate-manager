@@ -22,7 +22,7 @@
         $hash = sha1(time().$review_id.$file['tmp_name']);
         $upload_name = $hash.'.'.$ext;
         $image = new self();
-        $image->img_url = 'uploads/review_images/review_'.$review_id.'/'.$upload_name;
+        $image->img_url = '../uploads/review_images/review_'.$review_id.'/'.$upload_name;
         $image->name = $upload_name;
         $image->review_id = $review_id;
         $image->sort = $last_sort;
