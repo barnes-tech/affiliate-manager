@@ -2,7 +2,6 @@
   <label for="sortable-img">Sort Images</label>
   <article id="sortable-img" class="d-flex">
   <?php foreach($this->images as $image):
-
     if(preg_match('/..\//', $image->img_url) == 1) {
       $stripped_url = ltrim($image->img_url,'.');
       $img_url = ltrim($stripped_url,'/');

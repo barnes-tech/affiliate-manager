@@ -22,7 +22,7 @@
       <?php foreach($this->brands as $brand):?>
         <article id="<?=$brand->id?>" class="object-card flex">
           <a href="#" onclick="brandDetails(<?=$brand->id?>)">
-          <img src="<?=$brand->img_url?>" class="d-block mx-auto" height="150px" width="200px" alt="<?=$brand->name?>"/>
+              <img src="<?=$brand->img_url?>" class="mx-auto" alt="<?=$brand->name?>"/>
           <h3 class="text-center"><?=$brand->name?></h3>
           </a>
         </article>
@@ -30,9 +30,9 @@
         endforeach;
         endif;?>
       <article class="object-card-flex">
-
+        <a href="add" class="d-block">Add</a>
+      </article>
     </section>
-  </article>
 </section>
 <?php $this->partial('adminbrands','modal');?>
 <script>

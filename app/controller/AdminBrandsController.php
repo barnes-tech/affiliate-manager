@@ -54,6 +54,13 @@
       $this->view->render('adminbrands/add');
     }
 
+    public function get_edit_action() {
+      if($this->request->is_post()) {
+        $this->request->csrf_check();
+        $id = $this->request->get('brand_id');
+        Router::redirect('adminbrands/edit/'.$id);
+      }
+    }
     public function edit_action($id) {
       $brand = Brands::find_by_user_and_id($this->current_user->id,$id);
       if(!$brand) {

@@ -9,6 +9,7 @@
       </button>
     </div>
     <div class="modal-body">
+
       <section class="row">
         <div class="col-lg-4">
           <img id="brand_image" src="" alt="" class="img-fluid"/>
@@ -21,6 +22,11 @@
       </section>
     </div>
     <div class="modal-footer">
+      <form method="post" action="<?=SROOT.'adminbrands/get_edit'?>" class="row" id="modalForm">
+        <?=FormHelpers::csrf_input()?>
+        <input type="hidden" id="brand_id" name="brand_id" value=""/>
+        <input type="submit" class="btn btn-success" value="Edit" />
+      </form>
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     </div>
   </div>
@@ -34,4 +40,23 @@ jQuery('#brandModal').on('hidden.bs.modal', function() {
   jQuery('#about').val('');
   jQuery('#brand_url').attr('href','#');
 });
+
+function editBrand(){
+  jQuery.ajax({
+    url : '<?=SROOT?>adminbrands/edit',
+    method : "POST",
+    data : { id : brand_id },
+    success: function(resp){
+      if(resp.success) {
+        var el = jQuery('i[data-id="'+resp.model_id+'"]');
+        var klass = (resp.listed)? 'fas' : 'far';
+        el.removeClass("fas far");
+        el.addClass(klass);
+        alertMsg(resp.msg,'dark');
+      } else {
+        alertMsg(resp.msg,'danger');
+      }
+    }
+  });
+}
 </script>

@@ -21,7 +21,7 @@
       $hash = sha1(time().$brand_id.$file['tmp_name']);
       $upload_name = $hash.'.'.$ext;
       $image = new self();
-      $image->img_url = 'uploads/brand_logos/brand_'.$brand_id.'/'.$upload_name;
+      $image->img_url = '../uploads/brand_logos/brand_'.$brand_id.'/'.$upload_name;
       $image->name = $upload_name;
       $image->brand_id = $brand_id;
       $image->sort = $last_sort;
