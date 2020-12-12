@@ -1,5 +1,6 @@
 # affiliate-manager
 Affiliate marketing CMS
+09/12/20: Added edit brand functionality through the modal window via hidden input with csrf check.Some cosmetic changes.
 30/11/20: Having trouble pulling image into modal.
 28/11/20: Modal index frontend changes, now displays with image on index page, details displayed in modal.
 25/11/10: Products model joined SQL query brands with image. 
