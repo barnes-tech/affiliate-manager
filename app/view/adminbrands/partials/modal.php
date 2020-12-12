@@ -22,10 +22,12 @@
       </section>
     </div>
     <div class="modal-footer">
-      <form method="post" action="<?=SROOT.'adminbrands/get_edit'?>" class="row" id="modalForm">
+
+      <form method="post" class="row" id="edit_form">
         <?=FormHelpers::csrf_input()?>
         <input type="hidden" id="brand_id" name="brand_id" value=""/>
-        <input type="submit" class="btn btn-success" value="Edit" />
+        <input type="submit" formaction="<?=SROOT.'adminbrands/get_delete'?>" class="btn btn-danger" value="Delete"/>
+        <input type="submit" formaction="<?=SROOT.'adminbrands/get_edit'?>" class="btn btn-success" value="Edit"/>
       </form>
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     </div>
@@ -40,23 +42,4 @@ jQuery('#brandModal').on('hidden.bs.modal', function() {
   jQuery('#about').val('');
   jQuery('#brand_url').attr('href','#');
 });
-
-function editBrand(){
-  jQuery.ajax({
-    url : '<?=SROOT?>adminbrands/edit',
-    method : "POST",
-    data : { id : brand_id },
-    success: function(resp){
-      if(resp.success) {
-        var el = jQuery('i[data-id="'+resp.model_id+'"]');
-        var klass = (resp.listed)? 'fas' : 'far';
-        el.removeClass("fas far");
-        el.addClass(klass);
-        alertMsg(resp.msg,'dark');
-      } else {
-        alertMsg(resp.msg,'danger');
-      }
-    }
-  });
-}
 </script>

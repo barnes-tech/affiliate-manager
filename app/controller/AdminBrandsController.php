@@ -61,6 +61,14 @@
         Router::redirect('adminbrands/edit/'.$id);
       }
     }
+
+    public function get_delete_action() {
+      if($this->request->is_post()) {
+        $this->request->csrf_check();
+        $id = $this->request->get('brand_id');
+        Router::redirect('adminbrands/delete/'.$id);
+      }
+    }
     public function edit_action($id) {
       $brand = Brands::find_by_user_and_id($this->current_user->id,$id);
       if(!$brand) {
@@ -121,26 +129,14 @@
       }
     }
 
-    public function delete_action(){
-      $resp = [
-        'success' => false,
-        'msg' => 'something went wrong.'
-      ];
-      if($this->request->is_post()) {
-        $id = (int)$this->request->get('id');
+    public function delete_action($id) {
         $brand = Brands::find_by_user_and_id($this->current_user->id,$id);
         if($brand) {
           $brand->delete();
           Logos::delete_images($brand->id);
-          $resp = [
-            'success' => true,
-            'model_id' => $id,
-            'name' => $brand->name,
-            'msg' => $brand->name.' deleted'
-          ];
+          Session::add_msg('dark',$brand->name.' deleted.');
+          Router::redirect('adminbrands/index');
         }
-      }
-      $this->json_response($resp);
     }
 
     public function delete_img_action() {

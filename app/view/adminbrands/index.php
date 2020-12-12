@@ -19,19 +19,21 @@
   <article class="col-lg-10 offset-lg-1 p-5">
     <h2 class="text-center">Affiliate Manager</h2>
     <section class="row">
+      <div class="top-control d-block mx-auto">
+        <p class="text-center">Search brands or add a new brand!</p>
+      </div>
+    </section>
+    <section class="row">
       <?php foreach($this->brands as $brand):?>
-        <article id="<?=$brand->id?>" class="object-card flex">
+        <article id="<?=$brand->id?>" class="col-lg-2 object-card">
           <a href="#" onclick="brandDetails(<?=$brand->id?>)">
-              <img src="<?=$brand->img_url?>" class="mx-auto" alt="<?=$brand->name?>"/>
+              <img src="<?=$brand->img_url?>" class="mx-auto img-fluid" alt="<?=$brand->name?>"/>
           <h3 class="text-center"><?=$brand->name?></h3>
           </a>
         </article>
       <?php
         endforeach;
         endif;?>
-      <article class="object-card-flex">
-        <a href="add" class="d-block">Add</a>
-      </article>
     </section>
 </section>
 <?php $this->partial('adminbrands','modal');?>

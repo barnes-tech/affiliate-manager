@@ -136,6 +136,13 @@ ul li {
   color:crimson;
 }
 
+.top-control {
+  background-color:skyblue;
+  border-radius:2px;
+  width:80%;
+
+}
+
 .object-card {
   border:solid 2px transparent;
   border-radius:3px;
